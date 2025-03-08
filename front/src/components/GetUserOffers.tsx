@@ -30,11 +30,11 @@ const GetUserOffers: React.FC = () =>{
                 setLoading(false);
                 console.log("LES OFFRES", response.data);
                 let allOffers: OffersDetailsProps[] = Object.values(response.data).map((dataOffer: any) => ({
-                    offerId: dataOffer.offer_id,
-                    nftId: dataOffer.nftId,
-                    nftPrice: dataOffer.nftPrice,
-                    nftUrl: dataOffer.nftUrl,
-                    offerCreatedAt: dataOffer.offerCreatedAt,
+                    offer_id: dataOffer.offer_id,
+                    nft_id: dataOffer.nft_id,
+                    price: dataOffer.price,
+                    nft_url: dataOffer.nft_url,
+                    created_at: dataOffer.created_at,
                 }));
                 setOffers(allOffers);
                 showSuccess('Succes getting offers');
@@ -50,12 +50,12 @@ const GetUserOffers: React.FC = () =>{
 
     function cancelOffer(offerToRemove: OffersDetailsProps) {
         apiService.post({
-            url: `tokens/cancel/${offerToRemove.offerId}`,
+            url: `tokens/cancel/${offerToRemove.offer_id}`,
             store: { token: token, user_id: userId },
             needAuth: true
         })
         .then(response => {
-            setOffers((prevOffers) => prevOffers.filter((offer) => offer.offerId !== offerToRemove.offerId));
+            setOffers((prevOffers) => prevOffers.filter((offer) => offer.offer_id !== offerToRemove.offer_id));
             showSuccess('Succes canceling offer');
         })
         .catch(error => {
@@ -73,15 +73,18 @@ const GetUserOffers: React.FC = () =>{
             <h1>User Offers</h1>
             <div className='w-full h-full flex flex-wrap'>
                 {offers && offers.length > 0 ? offers.map((offer) => (
-                    <div className='ring-2 ring-collecty-p m-3 rounded-md w-72 h-auto' key={`asssets-${offer.offerId}`}>
-                    <div className='w-auto h-auto'>
-                        <img src={`http://localhost:8080/${offer.nftUrl}`} alt={offer.nftId} className='w-auto h-auto' />
-                    </div>
-                    <div className='p-2'>
-                        <h1 className='font-semibold pl-2 py-3'>OfferId : {offer.offerId}</h1>
-                        <h1 className='font-semibold pl-2 py-3'>Prix : {offer.nftPrice}</h1>
-                    </div>
-                    <button className="w-2/4 h-full rounded-md cursor-pointer ring-1 ring-collecty-p p-2" onClick={() => cancelOffer(offer)}>Cancel Offer</button>
+                    <div className='ring-2 ring-collecty-p m-3 rounded-md w-72 h-auto' key={`asssets-${offer.offer_id}`}>
+                        <div className='w-auto h-auto'>
+                            <img src={`http://localhost:8080/${offer.nft_url}`} alt={offer.nft_id} className='w-auto h-auto' />
+                        </div>
+                        <div className='p-2 text-white'>
+                            <h1 className='font-semibold pl-2 py-3'>OfferId : {offer.offer_id}</h1>
+                            <h1 className='font-semibold pl-2 py-3'>Prix : {offer.price}</h1>
+                        </div>
+                        <div>
+                            <button className="w-2/4 h-full rounded-md cursor-pointer ring-1 ring-collecty-p p-2" onClick={() => cancelOffer(offer)}>Cancel Offer</button>
+
+                        </div>
                 </div>
                 )) : <p>No assets</p>
                 }

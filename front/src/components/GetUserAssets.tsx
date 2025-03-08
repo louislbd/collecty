@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { apiService } from '../service/api';
 import { useSelector } from 'react-redux';
 import { RootState } from '../service/store';
-import PopUpCreateOffer from './PopUpCreateOffer';
+//import PopUpCreateOffer from './PopUpCreateOffer';
 import { showSuccess } from './Tostify/PopUp';
+
+import PopUpCreateOffer from './PopUpCreateOffer';
 
 export interface AssetDetailsProps {
     asset_name: string;

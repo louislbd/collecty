@@ -66,10 +66,6 @@ function CreatePaintingForm() {
         })
             .then(() => {
                 showSuccess('NFT created successfully');
-                navigate('/your-collecty-vault');
-            }).catch((error: any) => {
-                showError('Error creating NFT');
-            }).finally(() => {
                 setPreviewImageUrl(null);
                 setImageData(null);
                 setSecret('');
@@ -79,6 +75,10 @@ function CreatePaintingForm() {
                     assetDescription: '',
                     xrpAddress: '',
                 });
+                navigate('/your-collecty-vault');
+            }).catch((error: any) => {
+                showError('Error creating NFT');
+            }).finally(() => {
                 setIsLoading(false);
             });
     }

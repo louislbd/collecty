@@ -20,9 +20,11 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
     const [assetDetailss, setAssetDetailss] = useState({
         assetId: assetsDetails[0].asset_id || '',
         assetName: assetsDetails[0].asset_name || '',
+        assetDescription: assetsDetails[0].asset_description || '',
         price: assetsDetails[0].asset_price || 0,
         xrpAddress: assetsDetails[0].xrp_address || '',
         nftoken_id: assetsDetails[0].nftoken_id || '',
+        nft_url: assetsDetails[0].image_url || '',
     });
     const [status, setStatus] = useState<string>('');
     const userId = useSelector((state: RootState) => state.auth.user_id);
@@ -50,12 +52,15 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
             'asset_id': assetDetailss.assetId,
             'user_id': userId,
             'asset_name': assetDetailss.assetName,
+            'asset_description': assetDetailss.assetDescription,
             'price': assetDetailss.price,
             'xrp_address': assetDetailss.xrpAddress,
             'nft_token_id': assetDetailss.nftoken_id,
-            'client_secret': secret
+            'client_secret': secret,
+            'nft_url': assetDetailss.nft_url
         };
 
+        console.log(data);
         apiService.post({
             url: 'tokens/create-offer',
             data: data,
@@ -63,7 +68,6 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
             needAuth: true
         })
             .then((response: any) => {
-                setStatus(`Success: ${response.message} (Tx Hash: ${response.transaction_hash})`);
                 showSuccess('Transaction submitted successfully!');
             })
             .catch((error: any) => {
@@ -81,9 +85,6 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
                 <div className='w-full h-full p-4 text-white font-semibold'>
                     <div className='flex justify-between items-center'>
                         <h2 className='text-4xl font-normal'>Asset: {assetsDetails[0].asset_name}</h2>
-                        <div>
-                            currently In offer / Not in Offer
-                        </div>
                         <button onClick={closeModalFunc} className='text-2xl font-semibold text-collecty-p hover:font-bold'>X</button>
                     </div>
                     <div className='w-full h-0.5 my-3 rounded-sm bg-collecty-p'></div>
@@ -95,6 +96,17 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
                                 type='text'
                                 label='Asset Name'
                                 value={assetDetailss.assetName}
+                                disabled={false}
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div>
+                            <GlobalInput
+                                id='assetName'
+                                placeholder='Asset Description'
+                                type='text'
+                                label='Asset Name'
+                                value={assetDetailss.assetDescription}
                                 disabled={false}
                                 onChange={handleInputChange}
                             />
