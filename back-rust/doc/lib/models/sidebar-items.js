@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":["Asset","AssetRequest","DeleteUser","LoginUser","Meta","NFTOffer","NftDetails","NftOfferResponse","NftResponse","Offer","OfferRequest","RawResult","RegisterUser","SubmitTokenRequest","Token","TokenRequest","UpdateUser","User","Wallet","WalletRequest"]};

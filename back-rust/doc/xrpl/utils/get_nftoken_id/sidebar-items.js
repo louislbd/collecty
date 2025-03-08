@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["get_nftoken_id","get_nftoken_ids_from_nftokens"]};

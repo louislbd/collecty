@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["generate_faucet_wallet","get_faucet_url"],"mod":["exceptions"]};

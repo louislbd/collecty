@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":["DepositPreauth","Directory","Escrow","LedgerEntry","Offer","RippleState","Ticket"],"trait":["LedgerEntryError"]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["TLS_RECORD_OVERHEAD"],"enum":["Certificate","MaxFragmentLength"],"struct":["Aes128GcmSha256","Aes256GcmSha384","NoClock","NoVerify","SplitConnectionState","TlsConfig","TlsConnection","TlsContext","TlsReader","TlsWriter"],"trait":["TlsCipherSuite","TlsClock","TlsVerifier"],"type":["Sha256","Sha384"]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["create_routes"],"mod":["assets_routes","auth_routes","tokens_routes","users_routes"]};

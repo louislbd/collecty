@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["AMMDepositFlag"],"struct":["AMMDeposit","AMMDepositFlagIter"]};

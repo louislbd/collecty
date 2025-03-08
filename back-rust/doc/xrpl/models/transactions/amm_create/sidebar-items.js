@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["AMM_CREATE_MAX_FEE"],"struct":["AMMCreate"]};

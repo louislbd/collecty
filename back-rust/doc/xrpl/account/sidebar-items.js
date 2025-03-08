@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["does_account_exist","get_account_root","get_latest_transaction","get_next_valid_seq_number","get_xrp_balance"]};

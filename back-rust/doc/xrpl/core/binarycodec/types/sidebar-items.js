@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["XRPLTypes"],"mod":["account_id","amount","blob","currency","exceptions","hash","issue","paths","utils","vector256","xchain_bridge"],"struct":["STArray","STObject","SerializedType"],"trait":["TryFromParser","XRPLType"]};

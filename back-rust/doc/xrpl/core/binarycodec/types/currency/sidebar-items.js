@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["NATIVE_CODE","NATIVE_HEX_CODE"],"struct":["Currency"]};

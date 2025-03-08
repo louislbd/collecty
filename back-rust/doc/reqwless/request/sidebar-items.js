@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["Auth","Method"],"struct":["DefaultRequestBuilder","Request"],"trait":["RequestBody","RequestBuilder"]};

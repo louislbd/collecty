@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["AccountTxVersionMap"],"struct":["AccountTx","AccountTxBase","AccountTxTransaction","AccountTxTransactionV1","AccountTxV1","TransactionBase"]};

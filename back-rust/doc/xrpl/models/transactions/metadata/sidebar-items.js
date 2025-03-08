@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["AffectedNode","NodeType"],"struct":["Fields","NFTokenMetadata","NFTokenMetadataFields","TransactionMetadata"]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["AMM_VOTE_MAX_TRADING_FEE"],"struct":["AMMVote"]};

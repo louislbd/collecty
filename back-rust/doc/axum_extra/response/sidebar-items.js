@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["multiple"],"struct":["Css","JavaScript","Wasm"]};

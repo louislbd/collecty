@@ -1,9 +1,0 @@
-(function() {
-    var implementors = Object.fromEntries([["embedded_io",[]],["embedded_tls",[["impl&lt;'a, Socket, CipherSuite&gt; <a class=\"trait\" href=\"embedded_io/trait.Write.html\" title=\"trait embedded_io::Write\">Write</a> for <a class=\"struct\" href=\"embedded_tls/blocking/struct.TlsConnection.html\" title=\"struct embedded_tls::blocking::TlsConnection\">TlsConnection</a>&lt;'a, Socket, CipherSuite&gt;<div class=\"where\">where\n    Socket: <a class=\"trait\" href=\"embedded_io/trait.Read.html\" title=\"trait embedded_io::Read\">Read</a> + <a class=\"trait\" href=\"embedded_io/trait.Write.html\" title=\"trait embedded_io::Write\">Write</a> + 'a,\n    CipherSuite: <a class=\"trait\" href=\"embedded_tls/blocking/trait.TlsCipherSuite.html\" title=\"trait embedded_tls::blocking::TlsCipherSuite\">TlsCipherSuite</a> + 'static,</div>"],["impl&lt;'a, Socket, CipherSuite, State&gt; <a class=\"trait\" href=\"embedded_io/trait.Write.html\" title=\"trait embedded_io::Write\">Write</a> for <a class=\"struct\" href=\"embedded_tls/blocking/struct.TlsWriter.html\" title=\"struct embedded_tls::blocking::TlsWriter\">TlsWriter</a>&lt;'a, Socket, CipherSuite, State&gt;<div class=\"where\">where\n    Socket: <a class=\"trait\" href=\"embedded_io/trait.Write.html\" title=\"trait embedded_io::Write\">Write</a> + 'a,\n    CipherSuite: <a class=\"trait\" href=\"embedded_tls/blocking/trait.TlsCipherSuite.html\" title=\"trait embedded_tls::blocking::TlsCipherSuite\">TlsCipherSuite</a> + 'static,\n    State: SplitState,</div>"]]]]);
-    if (window.register_implementors) {
-        window.register_implementors(implementors);
-    } else {
-        window.pending_implementors = implementors;
-    }
-})()
-//{"start":57,"fragment_lengths":[18,1464]}

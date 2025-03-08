@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["SEED_LENGTH","XRPL_ALPHABET"],"fn":["decode_base58","encode_base58"]};

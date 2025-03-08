@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["NFTokenCreateOfferFlag"],"struct":["NFTokenCreateOffer","NFTokenCreateOfferFlagIter"],"trait":["NFTokenCreateOfferError"]};

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["BodyReader","Status"],"struct":["HeaderIterator","Response","ResponseBody","StatusCode","UnknownStatusError"]};

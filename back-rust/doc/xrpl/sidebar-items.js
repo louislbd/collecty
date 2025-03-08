@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["XRPLSerdeJsonError"],"externcrate":["serde_json"],"macro":["serde_with_tag","skip_err"],"mod":["account","asynch","clients","constants","core","ledger","macros","models","transaction","utils","wallet"]};

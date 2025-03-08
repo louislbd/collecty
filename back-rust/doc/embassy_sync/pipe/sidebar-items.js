@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["TryReadError","TryWriteError"],"struct":["DynamicFillBufFuture","DynamicReadFuture","DynamicReader","DynamicWriteFuture","DynamicWriter","FillBufFuture","Pipe","ReadFuture","Reader","WriteFuture","Writer"]};

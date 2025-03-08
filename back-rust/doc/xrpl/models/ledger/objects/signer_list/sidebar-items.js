@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["SignerListFlag"],"struct":["SignerEntry","SignerList","SignerListFlagIter"]};

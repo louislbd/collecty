@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["XRPLHashException","XRPLSerializeArrayException","XRPLSerializeMapException","XRPLTypeException","XRPLVectorException","XRPLXChainBridgeException"]};

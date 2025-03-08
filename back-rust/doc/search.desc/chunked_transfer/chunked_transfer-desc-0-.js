@@ -1,1 +1,0 @@
-searchState.loadedDescShard("chunked_transfer", 0, "Reads HTTP chunks and sends back real data.\nSplits the incoming data into HTTP chunks.\nReturns the argument unchanged.\nReturns the argument unchanged.\nCalls <code>U::from(self)</code>.\nCalls <code>U::from(self)</code>.")

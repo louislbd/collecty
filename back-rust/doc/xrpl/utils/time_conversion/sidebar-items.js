@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["MAX_XRPL_TIME","RIPPLE_EPOCH"],"fn":["posix_to_ripple_time","ripple_time_to_posix"]};

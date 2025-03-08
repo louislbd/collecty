@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["FramerError","ReadResult"],"struct":["Framer"],"trait":["Stream"]};

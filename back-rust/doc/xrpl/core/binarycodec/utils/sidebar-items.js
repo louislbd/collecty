@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["MAX_BYTE_VALUE","MAX_DOUBLE_BYTE_LENGTH","MAX_DOUBLE_BYTE_VALUE","MAX_LENGTH_VALUE","MAX_SECOND_BYTE_VALUE","MAX_SINGLE_BYTE_LENGTH"],"fn":["decode_field_name","encode_field_name"]};

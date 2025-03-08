@@ -1,1 +1,0 @@
-searchState.loadedDescShard("modifier", 0, "Overloadable modification through both owned and mutable …\nAllows use of the implemented type as an argument to …\nA trait providing the set and set_mut methods for all …\nModify <code>F</code> with self.\nModify self using the provided modifier.\nModify self through a mutable reference with the provided …")

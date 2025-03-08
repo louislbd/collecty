@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"struct":["Info","LastClose","LedgerInfo","Load","Reporting","ServerInfo","ValidatorList"]};

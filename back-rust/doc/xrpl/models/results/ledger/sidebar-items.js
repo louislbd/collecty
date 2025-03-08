@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"enum":["TransactionInfo"],"struct":["Ledger","LedgerInner","QueuedTransaction","TransactionObject"]};

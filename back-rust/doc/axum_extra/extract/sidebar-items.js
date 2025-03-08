@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["multipart","rejection"],"struct":["Cached","Host","OptionalPath","WithRejection"]};

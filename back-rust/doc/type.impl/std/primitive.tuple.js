@@ -1,9 +1,0 @@
-(function() {
-    var type_impls = Object.fromEntries([["elliptic_curve",[]],["iron",[["<details class=\"toggle implementors-toggle\" open><summary><section id=\"impl-Modifier%3CX%3E-for-(M1,+M2)\" class=\"impl\"><a class=\"src rightside\" href=\"src/modifier/impls.rs.html#14-16\">source</a><a href=\"#impl-Modifier%3CX%3E-for-(M1,+M2)\" class=\"anchor\">§</a><h3 class=\"code-header\">impl&lt;X, M1, M2&gt; <a class=\"trait\" href=\"iron/modifier/trait.Modifier.html\" title=\"trait iron::modifier::Modifier\">Modifier</a>&lt;X&gt; for <a class=\"primitive\" href=\"https://doc.rust-lang.org/1.82.0/std/primitive.tuple.html\">(M1, M2)</a><div class=\"where\">where\n    M1: <a class=\"trait\" href=\"iron/modifier/trait.Modifier.html\" title=\"trait iron::modifier::Modifier\">Modifier</a>&lt;X&gt;,\n    M2: <a class=\"trait\" href=\"iron/modifier/trait.Modifier.html\" title=\"trait iron::modifier::Modifier\">Modifier</a>&lt;X&gt;,</div></h3></section></summary><div class=\"impl-items\"><details class=\"toggle method-toggle\" open><summary><section id=\"method.modify\" class=\"method trait-impl\"><a class=\"src rightside\" href=\"src/modifier/impls.rs.html#17\">source</a><a href=\"#method.modify\" class=\"anchor\">§</a><h4 class=\"code-header\">fn <a href=\"iron/modifier/trait.Modifier.html#tymethod.modify\" class=\"fn\">modify</a>(self, x: <a class=\"primitive\" href=\"https://doc.rust-lang.org/1.82.0/std/primitive.reference.html\">&amp;mut X</a>)</h4></section></summary><div class='docblock'>Modify <code>F</code> with self.</div></details></div></details>","Modifier<X>","iron::mime::Param"]]]]);
-    if (window.register_type_impls) {
-        window.register_type_impls(type_impls);
-    } else {
-        window.pending_type_impls = type_impls;
-    }
-})()
-//{"start":55,"fragment_lengths":[21,1538]}

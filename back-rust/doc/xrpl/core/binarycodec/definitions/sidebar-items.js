@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"constant":["CODE_MAX_VALUE","CODE_MIN_VALUE"],"mod":["types"],"struct":["FieldHeader","FieldInfo","FieldInstance"]};

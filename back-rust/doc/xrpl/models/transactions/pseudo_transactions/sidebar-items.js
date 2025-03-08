@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"mod":["enable_amendment","set_fee","unl_modify"]};
