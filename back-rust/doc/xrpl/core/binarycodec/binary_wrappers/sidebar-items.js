@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["BinaryParser"],"trait":["Parser","Serialization"],"type":["BinarySerializer"]};

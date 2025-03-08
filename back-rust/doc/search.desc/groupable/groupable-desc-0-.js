@@ -1,0 +1,1 @@
+searchState.loadedDescShard("groupable", 0, "Conversion from an <code>Iterator</code> of key-value pairs.\nConversion from an <code>Iterator</code> of pairs.\nBuild a container with groups of elements from an external …\nLoops through the entire iterator, grouping all keys into …")

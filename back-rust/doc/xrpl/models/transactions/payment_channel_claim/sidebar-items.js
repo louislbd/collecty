@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["PaymentChannelClaimFlag"],"struct":["PaymentChannelClaim","PaymentChannelClaimFlagIter"]};

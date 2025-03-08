@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_fee","get_latest_open_ledger_sequence","get_latest_validated_ledger_sequence"]};

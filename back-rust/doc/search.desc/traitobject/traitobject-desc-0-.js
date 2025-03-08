@@ -1,0 +1,1 @@
+searchState.loadedDescShard("traitobject", 0, "traitobject\nA trait implemented for all trait objects.\nGet the data pointer from this trait object.\nGet the data pointer from this trait object, mutably.")

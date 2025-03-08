@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["create_asset","delete_asset","get_asset_from_user_and_asset_id","get_assets","get_user_assets","upload_image"]};

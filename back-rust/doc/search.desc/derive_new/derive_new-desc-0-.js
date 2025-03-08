@@ -1,0 +1,1 @@
+searchState.loadedDescShard("derive_new", 0, "A custom derive implementation for <code>#[derive(new)]</code>")

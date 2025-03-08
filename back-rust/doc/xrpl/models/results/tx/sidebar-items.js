@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Transaction","TxVersionMap"],"struct":["Tx","TxBase","TxV1"]};

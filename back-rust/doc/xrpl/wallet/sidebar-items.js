@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["exceptions","faucet_generation"],"struct":["Wallet"]};

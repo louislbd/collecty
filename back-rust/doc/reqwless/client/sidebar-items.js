@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["HttpConnection","TlsVerify"],"struct":["HttpClient","HttpRequestHandle","HttpResource","HttpResourceRequestBuilder","TlsConfig"]};

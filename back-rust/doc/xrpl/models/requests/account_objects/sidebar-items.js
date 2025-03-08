@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["AccountObjectType"],"struct":["AccountObjects"]};

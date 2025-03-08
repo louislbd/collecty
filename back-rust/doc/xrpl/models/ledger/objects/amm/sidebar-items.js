@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["AMM","AuctionSlot","AuthAccount","VoteEntry"]};

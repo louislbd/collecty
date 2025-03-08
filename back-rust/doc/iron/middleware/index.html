@@ -1,0 +1,101 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="This module contains Iron’s middleware and handler system, the fundamental building blocks for handling HTTP requests and generating responses."><title>iron::middleware - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-492a78a4a87dcc01.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="iron" data-themes="" data-resource-suffix="" data-rustdoc-version="1.82.0 (f6e511eec 2024-10-15)" data-channel="1.82.0" data-search-js="search-a99f1315e7cc5121.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../static.files/main-921df33f47b8780c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-3b12f09e550e0385.css"></noscript><link rel="icon" href="https://avatars0.githubusercontent.com/u/7853871?s=256"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button><a class="logo-container" href="../../iron/index.html"><img src="https://avatars0.githubusercontent.com/u/7853871?s=128" alt=""></a></nav><nav class="sidebar"><div class="sidebar-crate"><a class="logo-container" href="../../iron/index.html"><img src="https://avatars0.githubusercontent.com/u/7853871?s=128" alt="logo"></a><h2><a href="../../iron/index.html">iron</a><span class="version">0.6.1</span></h2></div><h2 class="location"><a href="#">Module middleware</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#traits">Traits</a></li></ul></section><h2><a href="../index.html">In crate iron</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">iron</a>::<wbr><a class="mod" href="#">middleware</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../src/iron/middleware/mod.rs.html#1-461">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>This module contains Iron’s middleware and handler system, the fundamental
+building blocks for handling HTTP requests and generating responses.</p>
+<h2 id="handlers"><a class="doc-anchor" href="#handlers">§</a>Handlers</h2>
+<p>A <code>Handler</code> will produce a <code>Response</code> given a <code>Request</code>. Most handlers are
+functions or closures that accept a <code>&amp;mut Request</code> as an argument and return
+an <code>IronResult</code> containing a <code>Response</code>. An <code>IronResult</code> is returned instead of
+directly returning a <code>Response</code> in order to indicate a possibility of
+failure (e.g. database timeout).</p>
+<p>Here’s an example of a <code>Handler</code>:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>iron::prelude::<span class="kw-2">*</span>;
+<span class="kw">use </span>iron::Handler;
+<span class="kw">use </span>iron::status;
+
+<span class="kw">fn </span>hello_handler(req: <span class="kw-2">&amp;mut </span>Request) -&gt; IronResult&lt;Response&gt; {
+    <span class="prelude-val">Ok</span>(Response::with((status::Ok, <span class="string">"Hello world!"</span>)))
+};</code></pre></div>
+<h2 id="middleware"><a class="doc-anchor" href="#middleware">§</a>Middleware</h2>
+<p>In situations involving more complex logic, it may be desirable to transform
+<code>Request</code>s passed to a <code>Handler</code> or altering <code>Response</code>s sent to the
+clients. For example, an authorization step could only allow requests sent
+by authorized users to be passed to a <code>Handler</code> and respond to all other
+requests with a 403 status code. To faciliate such use cases, Iron’s
+middleware system allows <code>Handler</code>s to be extended by defining middleware,
+which will perform transformations.</p>
+<p>There are three types of middleware:</p>
+<ul>
+<li>A <code>BeforeMiddleware</code> alters a <code>Request</code>. It can be useful for handling
+control flow (e.g. routing and authorization).</li>
+<li>An <code>AroundMiddleware</code> wraps a <code>Handler</code>, changing both the <code>Response</code>
+passed to the <code>Handler</code> and the returned <code>Response</code>.</li>
+<li>An <code>AfterMiddleware</code> performs <code>Response</code> post-processing. It can be used
+for editing headers or logging <code>Response</code>s, but it should <em>not</em> be used for
+changing the body of a <code>Response</code>.</li>
+</ul>
+<p>See the documentation for each middleware for more details.</p>
+<h3 id="defining-the-middleware-pipeline"><a class="doc-anchor" href="#defining-the-middleware-pipeline">§</a>Defining the middleware pipeline</h3>
+<p>A <code>Chain</code> is a <code>Handler</code> that wraps another <code>Handler</code>. It is used to attach
+middleware to the wrapped <code>Handler</code> using a <code>link</code> method corresponding to
+each type of middleware. A sample middleware pipeline is shown below:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>iron::prelude::<span class="kw-2">*</span>;
+<span class="kw">use </span>iron::middleware::<span class="kw-2">*</span>;
+
+
+<span class="kw">struct </span>RequestLoggingMiddleware;
+<span class="kw">impl </span>BeforeMiddleware <span class="kw">for </span>RequestLoggingMiddleware {
+    <span class="kw">fn </span>before(<span class="kw-2">&amp;</span><span class="self">self</span>, req: <span class="kw-2">&amp;mut </span>Request) -&gt; IronResult&lt;()&gt; {
+        <span class="macro">println!</span>(<span class="string">"{:?}"</span>, req);
+        <span class="prelude-val">Ok</span>(())
+    }
+}
+
+<span class="kw">let </span><span class="kw-2">mut </span>chain = Chain::new(hello_handler);
+chain.link_before(RequestLoggingMiddleware {});
+<span class="comment">// Since a Chain is a Handler, chain can be passed to Iron::new without any problems.
+// Iron::new(chain).http("localhost:3000").unwrap();</span></code></pre></div>
+<h2 id="the-request-handling-flow"><a class="doc-anchor" href="#the-request-handling-flow">§</a>The Request Handling Flow</h2>
+<p>A diagram modeling the entire middleware system process is shown below:</p>
+<div class="example-wrap"><pre class="language-plain"><code>[b] = BeforeMiddleware
+[a] = AfterMiddleware
+[[h]] = AroundMiddleware
+[h] = Handler
+</code></pre></div>
+<p>With no errors, the flow looks like:</p>
+<div class="example-wrap"><pre class="language-plain"><code>[b] -&gt; [b] -&gt; [b] -&gt; [[[[h]]]] -&gt; [a] -&gt; [a] -&gt; [a] -&gt; [a]
+</code></pre></div>
+<p>A request first travels through all <code>BeforeMiddleware</code>, then a <code>Response</code> is
+generated by the <code>Handler</code>, which can be an arbitrary nesting of
+<code>AroundMiddleware</code>, then all <code>AfterMiddleware</code> are called with both the
+<code>Request</code> and <code>Response</code>. After all <code>AfterMiddleware</code> have been fired, the
+response is written back to the client.</p>
+<p>Iron’s error handling system is pragmatic and focuses on tracking two pieces
+of information for error receivers (other middleware):</p>
+<ul>
+<li>The cause of the error</li>
+<li>The result (what to do about) the error.</li>
+</ul>
+<p>The cause of the error is represented simply by the error itself, and the
+result of the error, representing the action to take in response to the
+error, is a complete Response, which will be sent at the end of the error
+flow.</p>
+<p>When an error is thrown in Iron by any middleware or handler returning an
+<code>Err</code> variant with an <code>IronError</code>, the flow of the <code>Request</code> switches to the
+error flow, which proceeds to just call the <code>catch</code> method of middleware and
+sidesteps the <code>Handler</code> entirely, since there is already a <code>Response</code> in the
+error.</p>
+<p>A <code>Request</code> can exit the error flow by returning an Ok from any of the catch
+methods. This resumes the flow at the middleware immediately following the
+middleware which handled the error. It is impossible to “go back” to an
+earlier middleware that was skipped.</p>
+<p>Generally speaking, returning a 5XX error code means that the error flow
+should be entered by raising an explicit error. Dealing with 4XX errors is
+trickier, since the server may not want to recognize an error that is
+entirely the clients fault; handling of 4XX error codes is up to to each
+application and middleware author.</p>
+<p>Middleware authors should be cognizant that their middleware may be skipped
+during the error flow. Anything that <em>must</em> be done to each <code>Request</code> or
+<code>Response</code> should be run during both the normal and error flow by
+implementing the <code>catch</code> method to also do the necessary action.</p>
+</div></details><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Chain.html" title="struct iron::middleware::Chain">Chain</a></div><div class="desc docblock-short">The middleware chain used in Iron.</div></li></ul><h2 id="traits" class="section-header">Traits<a href="#traits" class="anchor">§</a></h2><ul class="item-table"><li><div class="item-name"><a class="trait" href="trait.AfterMiddleware.html" title="trait iron::middleware::AfterMiddleware">After<wbr>Middleware</a></div><div class="desc docblock-short"><code>AfterMiddleware</code> are fired after a <code>Handler</code> is called inside of a Chain.</div></li><li><div class="item-name"><a class="trait" href="trait.AroundMiddleware.html" title="trait iron::middleware::AroundMiddleware">Around<wbr>Middleware</a></div><div class="desc docblock-short"><code>AroundMiddleware</code> are used to wrap and replace the <code>Handler</code> in a <code>Chain</code>.</div></li><li><div class="item-name"><a class="trait" href="trait.BeforeMiddleware.html" title="trait iron::middleware::BeforeMiddleware">Before<wbr>Middleware</a></div><div class="desc docblock-short"><code>BeforeMiddleware</code> are fired before a <code>Handler</code> is called inside of a Chain.</div></li><li><div class="item-name"><a class="trait" href="trait.Handler.html" title="trait iron::middleware::Handler">Handler</a></div><div class="desc docblock-short"><code>Handler</code>s are responsible for handling requests by creating Responses from Requests.</div></li></ul></section></div></main></body></html>

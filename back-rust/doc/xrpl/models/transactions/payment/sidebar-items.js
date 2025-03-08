@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["PaymentFlag"],"struct":["Payment","PaymentFlagIter"],"trait":["PaymentError"]};

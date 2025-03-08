@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["PathFindSubcommand"],"struct":["PathFind"],"type":["Path"]};

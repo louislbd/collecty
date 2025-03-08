@@ -1,0 +1,200 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `Parser` trait in crate `xrpl`."><title>Parser in xrpl::core::binarycodec::binary_wrappers - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-46f98efaafac5295.ttf.woff2,FiraSans-Regular-018c141bf0843ffd.woff2,FiraSans-Medium-8f9a781e4970d388.woff2,SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2,SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-492a78a4a87dcc01.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xrpl" data-themes="" data-resource-suffix="" data-rustdoc-version="1.82.0 (f6e511eec 2024-10-15)" data-channel="1.82.0" data-search-js="search-a99f1315e7cc5121.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../../static.files/storage-118b08c4c78b968e.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../../static.files/main-921df33f47b8780c.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-3b12f09e550e0385.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle" title="show sidebar"></button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xrpl/index.html">xrpl</a><span class="version">0.5.0</span></h2></div><h2 class="location"><a href="#">Parser</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.is_end">is_end</a></li><li><a href="#tymethod.peek">peek</a></li><li><a href="#tymethod.read">read</a></li><li><a href="#tymethod.read_field">read_field</a></li><li><a href="#tymethod.read_field_header">read_field_header</a></li><li><a href="#tymethod.read_field_value">read_field_value</a></li><li><a href="#tymethod.read_length_prefix">read_length_prefix</a></li><li><a href="#tymethod.read_type">read_type</a></li><li><a href="#tymethod.read_uint16">read_uint16</a></li><li><a href="#tymethod.read_uint32">read_uint32</a></li><li><a href="#tymethod.read_uint8">read_uint8</a></li><li><a href="#tymethod.skip_bytes">skip_bytes</a></li></ul><h3><a href="#object-safety">Object Safety</a></h3><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In xrpl::<wbr>core::<wbr>binarycodec::<wbr>binary_<wbr>wrappers</a></h2></div></nav><div class="sidebar-resizer"></div><main><div class="width-limiter"><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../../../index.html">xrpl</a>::<wbr><a href="../../index.html">core</a>::<wbr><a href="../index.html">binarycodec</a>::<wbr><a href="index.html">binary_wrappers</a>::<wbr><a class="trait" href="#">Parser</a><button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><span class="out-of-band"><a class="src" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#92-345">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait Parser {
+    // Required methods
+    fn <a href="#tymethod.peek" class="fn">peek</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.82.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;[<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u8.html">u8</a>; <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.array.html">1</a>]&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.skip_bytes" class="fn">skip_bytes</a>(&amp;mut self, n: <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;&amp;Self&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read" class="fn">read</a>(&amp;mut self, n: <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="struct" href="https://doc.rust-lang.org/1.82.0/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u8.html">u8</a>&gt;&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_uint8" class="fn">read_uint8</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u8.html">u8</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_uint16" class="fn">read_uint16</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u16.html">u16</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_uint32" class="fn">read_uint32</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u32.html">u32</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.is_end" class="fn">is_end</a>(&amp;self, custom_end: <a class="enum" href="https://doc.rust-lang.org/1.82.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.bool.html">bool</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_length_prefix" class="fn">read_length_prefix</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_field_header" class="fn">read_field_header</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="struct" href="../definitions/struct.FieldHeader.html" title="struct xrpl::core::binarycodec::definitions::FieldHeader">FieldHeader</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_field" class="fn">read_field</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="struct" href="../definitions/struct.FieldInstance.html" title="struct xrpl::core::binarycodec::definitions::FieldInstance">FieldInstance</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_type" class="fn">read_type</a>&lt;T: <a class="trait" href="../types/trait.TryFromParser.html" title="trait xrpl::core::binarycodec::types::TryFromParser">TryFromParser</a>&gt;(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;T, T::<a class="associatedtype" href="../types/trait.TryFromParser.html#associatedtype.Error" title="type xrpl::core::binarycodec::types::TryFromParser::Error">Error</a>&gt;;
+<span class="item-spacer"></span>    fn <a href="#tymethod.read_field_value" class="fn">read_field_value</a>&lt;T: <a class="trait" href="../types/trait.TryFromParser.html" title="trait xrpl::core::binarycodec::types::TryFromParser">TryFromParser</a>&gt;(
+        &amp;mut self,
+        field: &amp;<a class="struct" href="../definitions/struct.FieldInstance.html" title="struct xrpl::core::binarycodec::definitions::FieldInstance">FieldInstance</a>,
+    ) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;T, T::<a class="associatedtype" href="../types/trait.TryFromParser.html#associatedtype.Error" title="type xrpl::core::binarycodec::types::TryFromParser::Error">Error</a>&gt;
+       <span class="where">where T::<a class="associatedtype" href="../types/trait.TryFromParser.html#associatedtype.Error" title="type xrpl::core::binarycodec::types::TryFromParser::Error">Error</a>: <a class="trait" href="https://doc.rust-lang.org/1.82.0/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="enum" href="../../exceptions/enum.XRPLCoreException.html" title="enum xrpl::core::exceptions::XRPLCoreException">XRPLCoreException</a>&gt;</span>;
+}</code></pre><h2 id="required-methods" class="section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.peek" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#110">source</a><h4 class="code-header">fn <a href="#tymethod.peek" class="fn">peek</a>(&amp;self) -&gt; <a class="enum" href="https://doc.rust-lang.org/1.82.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;[<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u8.html">u8</a>; <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.array.html">1</a>]&gt;</h4></section></summary><div class="docblock"><p>Peek the first byte of the BinaryParser.</p>
+<h5 id="examples"><a class="doc-anchor" href="#examples">§</a>Examples</h5><h6 id="basic-usage"><a class="doc-anchor" href="#basic-usage">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+<span class="kw">let </span>first_byte: <span class="prelude-ty">Option</span>&lt;[u8; <span class="number">1</span>]&gt; = binary_parser.peek();
+
+<span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>([test_bytes[<span class="number">0</span>]; <span class="number">1</span>]), first_byte);</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.skip_bytes" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#138">source</a><h4 class="code-header">fn <a href="#tymethod.skip_bytes" class="fn">skip_bytes</a>(&amp;mut self, n: <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;&amp;Self&gt;</h4></section></summary><div class="docblock"><p>Consume the first n bytes of the BinaryParser.</p>
+<h5 id="examples-1"><a class="doc-anchor" href="#examples-1">§</a>Examples</h5><h6 id="basic-usage-1"><a class="doc-anchor" href="#basic-usage-1">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+<span class="kw">use </span>xrpl::core::exceptions::XRPLCoreException;
+
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+
+<span class="kw">match </span>binary_parser.skip_bytes(<span class="number">4</span>) {
+    <span class="prelude-val">Ok</span>(parser) =&gt; <span class="macro">assert_eq!</span>(<span class="kw-2">*</span>parser, test_bytes[<span class="number">4</span>..]),
+    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">match </span>e {
+        XRPLCoreException::XRPLBinaryCodecError(XRPLBinaryCodecException::UnexpectedParserSkipOverflow {
+            max: <span class="kw">_</span>,
+            found: <span class="kw">_</span>,
+        }) =&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>)
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#166">source</a><h4 class="code-header">fn <a href="#tymethod.read" class="fn">read</a>(&amp;mut self, n: <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="struct" href="https://doc.rust-lang.org/1.82.0/alloc/vec/struct.Vec.html" title="struct alloc::vec::Vec">Vec</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u8.html">u8</a>&gt;&gt;</h4></section></summary><div class="docblock"><p>Consume and return the first n bytes of the BinaryParser.</p>
+<h5 id="examples-2"><a class="doc-anchor" href="#examples-2">§</a>Examples</h5><h6 id="basic-usage-2"><a class="doc-anchor" href="#basic-usage-2">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+<span class="kw">use </span>xrpl::core::exceptions::XRPLCoreException;
+
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+
+<span class="kw">match </span>binary_parser.read(<span class="number">5</span>) {
+    <span class="prelude-val">Ok</span>(data) =&gt; <span class="macro">assert_eq!</span>(test_bytes[..<span class="number">5</span>], data),
+    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">match </span>e {
+        XRPLCoreException::XRPLBinaryCodecError(XRPLBinaryCodecException::UnexpectedParserSkipOverflow {
+            max: <span class="kw">_</span>,
+            found: <span class="kw">_</span>,
+        }) =&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>)
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_uint8" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#194">source</a><h4 class="code-header">fn <a href="#tymethod.read_uint8" class="fn">read_uint8</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u8.html">u8</a>&gt;</h4></section></summary><div class="docblock"><p>Read 1 byte from parser and return as unsigned int.</p>
+<h5 id="examples-3"><a class="doc-anchor" href="#examples-3">§</a>Examples</h5><h6 id="basic-usage-3"><a class="doc-anchor" href="#basic-usage-3">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+<span class="kw">use </span>xrpl::core::exceptions::XRPLCoreException;
+
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+
+<span class="kw">match </span>binary_parser.read_uint8() {
+    <span class="prelude-val">Ok</span>(data) =&gt; <span class="macro">assert_eq!</span>(<span class="number">0</span>, data),
+    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">match </span>e {
+        XRPLCoreException::XRPLBinaryCodecError(XRPLBinaryCodecException::UnexpectedParserSkipOverflow {
+            max: <span class="kw">_</span>,
+            found: <span class="kw">_</span>,
+        }) =&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>)
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_uint16" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#222">source</a><h4 class="code-header">fn <a href="#tymethod.read_uint16" class="fn">read_uint16</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u16.html">u16</a>&gt;</h4></section></summary><div class="docblock"><p>Read 2 bytes from parser and return as unsigned int.</p>
+<h5 id="examples-4"><a class="doc-anchor" href="#examples-4">§</a>Examples</h5><h6 id="basic-usage-4"><a class="doc-anchor" href="#basic-usage-4">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+<span class="kw">use </span>xrpl::core::exceptions::XRPLCoreException;
+
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+
+<span class="kw">match </span>binary_parser.read_uint16() {
+    <span class="prelude-val">Ok</span>(data) =&gt; <span class="macro">assert_eq!</span>(<span class="number">17</span>, data),
+    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">match </span>e {
+        XRPLCoreException::XRPLBinaryCodecError(XRPLBinaryCodecException::UnexpectedParserSkipOverflow {
+            max: <span class="kw">_</span>,
+            found: <span class="kw">_</span>,
+        }) =&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>)
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_uint32" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#250">source</a><h4 class="code-header">fn <a href="#tymethod.read_uint32" class="fn">read_uint32</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.u32.html">u32</a>&gt;</h4></section></summary><div class="docblock"><p>Read 4 bytes from parser and return as unsigned int.</p>
+<h5 id="examples-5"><a class="doc-anchor" href="#examples-5">§</a>Examples</h5><h6 id="basic-usage-5"><a class="doc-anchor" href="#basic-usage-5">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+<span class="kw">use </span>xrpl::core::exceptions::XRPLCoreException;
+
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+
+<span class="kw">match </span>binary_parser.read_uint32() {
+    <span class="prelude-val">Ok</span>(data) =&gt; <span class="macro">assert_eq!</span>(<span class="number">1122867</span>, data),
+    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">match </span>e {
+        XRPLCoreException::XRPLBinaryCodecError(XRPLBinaryCodecException::UnexpectedParserSkipOverflow {
+            max: <span class="kw">_</span>,
+            found: <span class="kw">_</span>,
+        }) =&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>)
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.is_end" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#291">source</a><h4 class="code-header">fn <a href="#tymethod.is_end" class="fn">is_end</a>(&amp;self, custom_end: <a class="enum" href="https://doc.rust-lang.org/1.82.0/core/option/enum.Option.html" title="enum core::option::Option">Option</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>&gt;) -&gt; <a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.bool.html">bool</a></h4></section></summary><div class="docblock"><p>Returns whether the binary parser has finished
+parsing (e.g. there is nothing left in the buffer
+that needs to be processed).</p>
+<h5 id="examples-6"><a class="doc-anchor" href="#examples-6">§</a>Examples</h5><h6 id="basic-usage-6"><a class="doc-anchor" href="#basic-usage-6">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+<span class="kw">use </span>xrpl::core::exceptions::XRPLCoreException;
+<span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::vec;
+
+<span class="kw">let </span>empty: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[];
+<span class="kw">let </span><span class="kw-2">mut </span>buffer: Vec&lt;u8&gt; = <span class="macro">vec!</span>[];
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">0</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+
+<span class="kw">while </span>!binary_parser.is_end(<span class="prelude-val">None</span>) {
+    <span class="kw">match </span>binary_parser.read(<span class="number">1</span>) {
+        <span class="prelude-val">Ok</span>(data) =&gt; buffer.extend_from_slice(<span class="kw-2">&amp;</span>data),
+        <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">match </span>e {
+            XRPLCoreException::XRPLBinaryCodecError(XRPLBinaryCodecException::UnexpectedParserSkipOverflow {
+                max: <span class="kw">_</span>,
+                found: <span class="kw">_</span>,
+            }) =&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>),
+            <span class="kw">_ </span>=&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>)
+        }
+    }
+}
+
+<span class="macro">assert_eq!</span>(test_bytes, <span class="kw-2">&amp;</span>buffer[..]);
+<span class="comment">// The BinaryParser is emptied as it is read.
+</span><span class="macro">assert_eq!</span>(binary_parser, empty[..]);
+</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_length_prefix" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#322">source</a><h4 class="code-header">fn <a href="#tymethod.read_length_prefix" class="fn">read_length_prefix</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/1.82.0/std/primitive.usize.html">usize</a>&gt;</h4></section></summary><div class="docblock"><p>Reads a variable length encoding prefix and returns
+the encoded length. The formula for decoding a length
+prefix is described in Length Prefixing.</p>
+<p>See Length Prefixing:
+<code>&lt;https://xrpl.org/serialization.html#length-prefixing&gt;</code></p>
+<h5 id="examples-7"><a class="doc-anchor" href="#examples-7">§</a>Examples</h5><h6 id="basic-usage-7"><a class="doc-anchor" href="#basic-usage-7">§</a>Basic usage</h6>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xrpl::core::binarycodec::BinaryParser;
+<span class="kw">use </span>xrpl::core::Parser;
+<span class="kw">use </span>xrpl::core::binarycodec::exceptions::XRPLBinaryCodecException;
+<span class="kw">use </span>xrpl::core::exceptions::XRPLCoreException;
+
+<span class="kw">let </span>test_bytes: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[<span class="number">6</span>, <span class="number">17</span>, <span class="number">34</span>, <span class="number">51</span>, <span class="number">68</span>, <span class="number">85</span>, <span class="number">102</span>];
+<span class="kw">let </span><span class="kw-2">mut </span>binary_parser: BinaryParser = BinaryParser::from(test_bytes);
+
+<span class="kw">match </span>binary_parser.read_length_prefix() {
+    <span class="prelude-val">Ok</span>(data) =&gt; <span class="macro">assert_eq!</span>(<span class="number">6</span>, data),
+    <span class="prelude-val">Err</span>(e) =&gt; <span class="kw">match </span>e {
+        XRPLCoreException::XRPLBinaryCodecError(XRPLBinaryCodecException::UnexpectedLengthPrefixRange {
+            min: <span class="kw">_</span>, max: <span class="kw">_
+        </span>}) =&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>),
+        <span class="kw">_ </span>=&gt; <span class="macro">assert!</span>(<span class="bool-val">false</span>)
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_field_header" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#326">source</a><h4 class="code-header">fn <a href="#tymethod.read_field_header" class="fn">read_field_header</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="struct" href="../definitions/struct.FieldHeader.html" title="struct xrpl::core::binarycodec::definitions::FieldHeader">FieldHeader</a>&gt;</h4></section></summary><div class="docblock"><p>Reads field ID from BinaryParser and returns as
+a FieldHeader object.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_field" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#332">source</a><h4 class="code-header">fn <a href="#tymethod.read_field" class="fn">read_field</a>(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;<a class="struct" href="../definitions/struct.FieldInstance.html" title="struct xrpl::core::binarycodec::definitions::FieldInstance">FieldInstance</a>&gt;</h4></section></summary><div class="docblock"><p>Read the field ordinal at the head of the
+BinaryParser and return a FieldInstance object
+representing information about the field
+containedin the following bytes.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_type" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#335">source</a><h4 class="code-header">fn <a href="#tymethod.read_type" class="fn">read_type</a>&lt;T: <a class="trait" href="../types/trait.TryFromParser.html" title="trait xrpl::core::binarycodec::types::TryFromParser">TryFromParser</a>&gt;(&amp;mut self) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;T, T::<a class="associatedtype" href="../types/trait.TryFromParser.html#associatedtype.Error" title="type xrpl::core::binarycodec::types::TryFromParser::Error">Error</a>&gt;</h4></section></summary><div class="docblock"><p>Read next bytes from BinaryParser as the given type.</p>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.read_field_value" class="method"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#339-344">source</a><h4 class="code-header">fn <a href="#tymethod.read_field_value" class="fn">read_field_value</a>&lt;T: <a class="trait" href="../types/trait.TryFromParser.html" title="trait xrpl::core::binarycodec::types::TryFromParser">TryFromParser</a>&gt;(
+    &amp;mut self,
+    field: &amp;<a class="struct" href="../definitions/struct.FieldInstance.html" title="struct xrpl::core::binarycodec::definitions::FieldInstance">FieldInstance</a>,
+) -&gt; <a class="type" href="../../exceptions/type.XRPLCoreResult.html" title="type xrpl::core::exceptions::XRPLCoreResult">XRPLCoreResult</a>&lt;T, T::<a class="associatedtype" href="../types/trait.TryFromParser.html#associatedtype.Error" title="type xrpl::core::binarycodec::types::TryFromParser::Error">Error</a>&gt;<div class="where">where
+    T::<a class="associatedtype" href="../types/trait.TryFromParser.html#associatedtype.Error" title="type xrpl::core::binarycodec::types::TryFromParser::Error">Error</a>: <a class="trait" href="https://doc.rust-lang.org/1.82.0/core/convert/trait.From.html" title="trait core::convert::From">From</a>&lt;<a class="enum" href="../../exceptions/enum.XRPLCoreException.html" title="enum xrpl::core::exceptions::XRPLCoreException">XRPLCoreException</a>&gt;,</div></h4></section></summary><div class="docblock"><p>Read value of the type specified by field from
+the BinaryParser.</p>
+</div></details></div><h2 id="object-safety" class="section-header">Object Safety<a href="#object-safety" class="anchor">§</a></h2><div class="object-safety-info">This trait is <b>not</b> <a href="https://doc.rust-lang.org/1.82.0/reference/items/traits.html#object-safety">object safe</a>.</div><h2 id="implementors" class="section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-Parser-for-BinaryParser" class="impl"><a class="src rightside" href="../../../../src/xrpl/core/binarycodec/binary_wrappers.rs.html#468-625">source</a><a href="#impl-Parser-for-BinaryParser" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.Parser.html" title="trait xrpl::core::binarycodec::binary_wrappers::Parser">Parser</a> for <a class="struct" href="struct.BinaryParser.html" title="struct xrpl::core::binarycodec::binary_wrappers::BinaryParser">BinaryParser</a></h3></section><div class="docblock"><p>Peek the first byte of the BinaryParser.</p>
+</div></div><script src="../../../../trait.impl/xrpl/core/binarycodec/binary_wrappers/trait.Parser.js" async></script></section></div></main></body></html>

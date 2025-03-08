@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["MAX_DROPS","MAX_IOU_EXPONENT","MAX_IOU_PRECISION","MAX_XRP","MIN_IOU_EXPONENT","ONE_DROP","XRP_DROPS"],"fn":["drops_to_xrp","verify_valid_ic_value","verify_valid_xrp_value","xrp_to_drops"]};
