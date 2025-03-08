@@ -1,0 +1,3 @@
+var srcIndex = new Map(JSON.parse('[["collecty_back",["",[],["main.rs"]]],["lib",["",[["assets",[],["mod.rs"]],["auth",[],["mod.rs"]],["db",[],["mod.rs"]],["helpers",[],["collecty_response.rs","mod.rs"]],["middleware",[],["auth_middleware.rs","mod.rs"]],["models",[],["mod.rs"]],["routes",[],["assets_routes.rs","auth_routes.rs","mod.rs","tokens_routes.rs","users_routes.rs"]],["tokens",[],["mod.rs"]],["users",[],["mod.rs"]],["wallets",[],["mod.rs"]],["websocket",[],["mod.rs"]],["xrp",[],["mod.rs"]]],["lib.rs"]]]]'));
+createSrcSidebar();
+//{"start":36,"fragment_lengths":[37,442]}

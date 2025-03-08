@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["collecty_response"]};
