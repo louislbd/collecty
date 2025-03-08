@@ -47,7 +47,8 @@ const GetShopOffers: React.FC<ShopOffersProps> = ({
                             <h1 className='font-semibold pl-2 py-3'>Name: {offer.asset_name}</h1>
                             <h1 className='font-semibold pl-2 py-3'>Price: {offer.price}</h1>
                             <div className='p-2 space-x-3 flex justify-center'>
-                                <button className="w-2/4 h-full rounded-md cursor-pointer ring-1 bg-collecty-p p-2" onClick={() => openCreateOfferModal(offer)}>Buy NFT</button>
+                                { userId !== offer.user_id && <button className="w-2/4 h-full rounded-md cursor-pointer ring-1 bg-collecty-p p-2" onClick={() => openCreateOfferModal(offer)}>Buy NFT</button>}
+                                { userId === offer.user_id && <p>You are the owner</p>}
                             </div>
                         </div>
                     </div>
