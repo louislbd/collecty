@@ -1,0 +1,12 @@
+/target
+*.env
+*.log
+
+# Assets File
+uploads/
+uploads/*
+
+# python files
+*.pyc
+venv
+__pycache__

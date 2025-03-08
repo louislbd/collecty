@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: collecty_db
+    restart: always
+    environment:
+      POSTGRES_USER: collecty
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: collecty_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - collecty_network
+    labels:
+      - "service=db"
+
+  back_rust:
+    build:
+      context: ./back-rust
+      dockerfile: Dockerfile
+    container_name: collecty_back
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - collecty_network
+    depends_on:
+      - db
+    labels:
+      - "service=back_rust"
+
+  back_py:
+    build:
+      context: ./back-py
+      dockerfile: Dockerfile.py
+    container_name: back_py
+    restart: always
+    ports:
+      - "8000:8000"
+    networks:
+      - collecty_network
+    depends_on:
+      - back_rust
+    labels:
+      - "service=back_py"
+
+  front:
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    container_name: collecty_front
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - collecty_network
+    depends_on:
+      - back_rust
+      - back_py
+    labels:
+      - "service=front"
+
+volumes:
+  pgdata:
+
+networks:
+  collecty_network:
