@@ -29,6 +29,14 @@ const GetUserOffers: React.FC = () =>{
             .then(response => {
                 setLoading(false);
                 console.log("LES OFFRES", response.data);
+                let allOffers: OffersDetailsProps[] = Object.values(response.data).map((dataOffer: any) => ({
+                    offerId: dataOffer.offer_id,
+                    nftId: dataOffer.nftId,
+                    nftPrice: dataOffer.nftPrice,
+                    nftUrl: dataOffer.nftUrl,
+                    offerCreatedAt: dataOffer.offerCreatedAt,
+                }));
+                setOffers(allOffers);
                 showSuccess('Succes getting offers');
             })
             .catch(error => {
@@ -41,7 +49,7 @@ const GetUserOffers: React.FC = () =>{
     }, []);
 
     function cancelOffer(offerToRemove: OffersDetailsProps) {
-        apiService.get({
+        apiService.post({
             url: `tokens/cancel/${offerToRemove.offerId}`,
             store: { token: token, user_id: userId },
             needAuth: true
@@ -70,7 +78,8 @@ const GetUserOffers: React.FC = () =>{
                         <img src={`http://localhost:8080/${offer.nftUrl}`} alt={offer.nftId} className='w-auto h-auto' />
                     </div>
                     <div className='p-2'>
-                        <h1 className='font-semibold pl-2 py-3'>Name: TEST cause only the picture will shown</h1>
+                        <h1 className='font-semibold pl-2 py-3'>OfferId : {offer.offerId}</h1>
+                        <h1 className='font-semibold pl-2 py-3'>Prix : {offer.nftPrice}</h1>
                     </div>
                     <button className="w-2/4 h-full rounded-md cursor-pointer ring-1 ring-collecty-p p-2" onClick={() => cancelOffer(offer)}>Cancel Offer</button>
                 </div>
