@@ -6,6 +6,7 @@ import GlobalInput from './Inputs/GlobalInput';
 import { showError, showSuccess } from './Tostify/PopUp';
 import { OffersDetailsProps } from '../pages/Shop';
 import { AssetDetailsProps } from './GetUserAssets';
+import { useNavigate } from 'react-router-dom';
 
 interface OffersDetailsToBuyProps {
     offerId: string;
@@ -31,6 +32,7 @@ const PopUpBuyNftOffer: React.FC<PopUpAssetDetailsProps> = ({
 }) => {
 
     console.log(offerDetails);
+    const navigate = useNavigate();
     const [secret, setSecret] = useState<string>('');
     const [requestDoing, setRequestDoing] = useState<boolean>(false);
     const [userInputs, setUserInputs] = useState({
@@ -98,6 +100,7 @@ const PopUpBuyNftOffer: React.FC<PopUpAssetDetailsProps> = ({
             .then((response: any) => {
                 showSuccess('Transaction submitted successfully!');
                 setRequestDoing(false);
+                navigate('/your-collecty-vault');
             })
             .catch((error: any) => {
                 console.error(error);
