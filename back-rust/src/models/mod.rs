@@ -70,6 +70,8 @@ pub struct Token {
     pub xrp_address: String,
     pub asset_tx_blob: String,
     pub supply: i64,
+    pub asset_name: String,
+    pub asset_description: String,
     pub created_at: DateTime<Utc>,
 }
 

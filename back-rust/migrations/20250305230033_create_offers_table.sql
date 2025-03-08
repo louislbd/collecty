@@ -7,5 +7,7 @@ CREATE TABLE offers (
     nft_url TEXT NOT NULL,
     price TEXT NOT NULL,
     is_sell_offer TEXT NOT NULL,
+    asset_name TEXT NOT NULL,
+    asset_description TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
 );
