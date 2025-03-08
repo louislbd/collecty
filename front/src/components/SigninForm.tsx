@@ -44,8 +44,8 @@ function SigninForm() {
                     <div className='flex flex-col w-full h-full items-center gap-6 justify-center'>
                         <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" placeholder='Username' onChange={(e) => setUsername(e.target.value)}></input>
                         <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" placeholder='Email' onChange={(e) => setEmail(e.target.value)}></input>
-                        <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
-                        <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" placeholder='Repeat password' onChange={(e) => setRepeatedPassword(e.target.value)}></input>
+                        <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" type="password" placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
+                        <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" type="password" placeholder='Repeat password' onChange={(e) => setRepeatedPassword(e.target.value)}></input>
                         { !requestDoing && <button className="w-[40%] h-8 bg-[#EEEEEE] rounded-md mt-6" disabled={isLoading} onClick={() => signin()}>Confim</button>}
                         { requestDoing && <p>Registering ...</p>}
                         <div>

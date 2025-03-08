@@ -5,6 +5,7 @@ import { apiService } from '../service/api';
 import { AssetDetailsProps } from './GetUserAssets';
 import GlobalInput from './Inputs/GlobalInput';
 import { showError, showSuccess } from './Tostify/PopUp';
+import { useNavigate } from 'react-router-dom';
 
 interface PopUpAssetDetailsProps {
     assetsDetails: AssetDetailsProps[];
@@ -16,6 +17,7 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
     closeModal,
 }) => {
 
+    const navigate = useNavigate();
     const [secret, setSecret] = useState<string>('');
     const [assetDetailss, setAssetDetailss] = useState({
         assetId: assetsDetails[0].asset_id || '',
@@ -72,6 +74,7 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
             .then((response: any) => {
                 showSuccess('Transaction submitted successfully!');
                 setRequestDoing(false);
+                navigate('/your-offers');
             })
             .catch((error: any) => {
                 console.error(error);
