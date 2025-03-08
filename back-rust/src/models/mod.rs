@@ -141,6 +141,8 @@ pub struct Offer {
     pub nft_id: String,
     pub price: String,
     pub is_sell_offer: String,
+    pub asset_name: String,
+    pub asset_description: String,
     pub created_at: DateTime<Utc>,
 }
 
@@ -149,6 +151,7 @@ pub struct OfferRequest {
     pub asset_id: String,
     pub user_id: String,
     pub asset_name: String,
+    pub asset_description: String,
     pub client_secret: String,
     pub price: String,
     pub xrp_address: String,

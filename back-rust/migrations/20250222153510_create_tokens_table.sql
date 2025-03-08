@@ -7,5 +7,7 @@ CREATE TABLE tokens (
     xrp_address TEXT NOT NULL,
     asset_tx_blob TEXT NOT NULL,
     supply BIGINT NOT NULL DEFAULT 1,
+    asset_name TEXT NOT NULL,
+    asset_description TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
 );

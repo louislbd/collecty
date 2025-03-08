@@ -162,9 +162,9 @@ pub async fn create_offer(
     let _new_offer = sqlx::query_as!(
         Offer,
         r#"
-        INSERT INTO offers (offer_id, user_id, account, nft_id, price, is_sell_offer, nft_url)
-        VALUES ($1, $2, $3, $4, $5, $6, $7)
-        RETURNING offer_id, user_id, account, nft_id, price, is_sell_offer, nft_url, created_at
+        INSERT INTO offers (offer_id, user_id, account, nft_id, price, is_sell_offer, asset_name, asset_description, nft_url)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+        RETURNING offer_id, user_id, account, nft_id, price, is_sell_offer, nft_url, asset_name, asset_description, created_at
         "#,
         offer_id,
         payload.user_id,
@@ -173,6 +173,8 @@ pub async fn create_offer(
         offer_response.price,
         offer_response.is_sell_offer,
         payload.nft_url,
+        payload.asset_name,
+        payload.asset_description,
     )
     .fetch_one(&*pool)
     .await
