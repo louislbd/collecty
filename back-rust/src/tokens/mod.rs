@@ -7,7 +7,91 @@ use serde_json::from_value;
 use uuid::Uuid;
 use axum::extract::Path;
 
-use crate::{helpers::collecty_response::CollectyResponse, models::{NFTOffer, Offer, OfferRequest, Token}};
+use crate::{helpers::collecty_response::CollectyResponse, models::{NFTOffer, Offer, OfferRequest, Token, NftBuyRequest}};
+
+pub async fn buy_offer(
+    Extension(pool): Extension<Arc<PgPool>>,
+    Json(payload): Json<NftBuyRequest>,
+) -> Result<impl IntoResponse, StatusCode> {
+    // Call the NFT API to buy the NFT
+    let buy = buy_xrpl_offer(
+        payload.client_secret.clone(),
+        payload.offer_id.clone(),
+    ).await
+    .map_err(|e| {
+        eprintln!("NFT creation failed: {}", e);
+        StatusCode::INTERNAL_SERVER_ERROR
+    })?;
+
+    // Delete the offer from the database
+    let _deleted_offer = sqlx::query!(
+        "DELETE FROM offers WHERE offer_id = $1",
+        payload.offer_id
+    )
+    .execute(&*pool)
+    .await
+    .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+    // Update the token owner in the database
+    let _updated_token = sqlx::query!(
+        "UPDATE tokens SET owner_user_id = $1 WHERE token_id = $2",
+        payload.client_secret,
+        payload.nft_id
+    )
+    .execute(&*pool)
+    .await
+    .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+    // Update the asset owner in the database
+    let _updated_asset = sqlx::query!(
+        "UPDATE assets SET user_id = $1 WHERE nftoken_id = $2",
+        payload.buyer_user_id,
+        payload.nft_id
+    )
+    .execute(&*pool)
+    .await
+    .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
+    Ok(StatusCode::OK)
+}
+
+pub async fn buy_xrpl_offer(
+    wallet_seed: String,
+    offer_id: String,
+) -> Result<Json<Value>, StatusCode> {
+    let client = Client::new();
+
+    let resp = client
+        .post("http://localhost:8000/nft/offer/buy")
+        .json(&json!({
+            "wallet_seed": wallet_seed,
+            "offer_id": offer_id,
+        }))
+        .send()
+        .await
+        .map_err(|e| {
+            eprintln!("HTTP error: {}", e);
+            StatusCode::INTERNAL_SERVER_ERROR
+        })?;
+
+    let response_json: Value = resp
+        .json()
+        .await
+        .map_err(|e| {
+            eprintln!("JSON parse error: {}", e);
+            StatusCode::INTERNAL_SERVER_ERROR
+        })?;
+
+    if let Some(Value::Bool(false)) = response_json.get("success") {
+        eprintln!("NFT creation failed: {:?}", response_json.get("error"));
+        return Err(StatusCode::BAD_REQUEST);
+    }
+
+    // 4) Return *all* JSON data back to the caller
+    // print response_json
+    print!("{:?}", response_json);
+    Ok(Json(response_json))
+}
 
 pub async fn cancel_offer(
     Extension(pool): Extension<Arc<PgPool>>,
@@ -78,9 +162,9 @@ pub async fn create_offer(
     let _new_offer = sqlx::query_as!(
         Offer,
         r#"
-        INSERT INTO offers (offer_id, user_id, account, nft_id, price, is_sell_offer)
-        VALUES ($1, $2, $3, $4, $5, $6)
-        RETURNING offer_id, user_id, account, nft_id, price, is_sell_offer, created_at
+        INSERT INTO offers (offer_id, user_id, account, nft_id, price, is_sell_offer, nft_url)
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
+        RETURNING offer_id, user_id, account, nft_id, price, is_sell_offer, nft_url, created_at
         "#,
         offer_id,
         payload.user_id,
@@ -88,6 +172,7 @@ pub async fn create_offer(
         offer_response.nft_id,
         offer_response.price,
         offer_response.is_sell_offer,
+        payload.nft_url,
     )
     .fetch_one(&*pool)
     .await

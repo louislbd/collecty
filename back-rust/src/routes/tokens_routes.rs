@@ -1,6 +1,6 @@
 use axum::{routing::{get, post}, Router};
 
-use crate::tokens::{get_tokens, create_offer, get_all_offers, get_user_offers, cancel_offer};
+use crate::tokens::{get_tokens, create_offer, get_all_offers, get_user_offers, cancel_offer, buy_offer};
 
 pub fn tokens_routes() -> Router {
     Router::new()
@@ -9,4 +9,5 @@ pub fn tokens_routes() -> Router {
         .route("/{uuid}", get(get_user_offers))
         .route("/create-offer", post(create_offer))
         .route("/cancel/{offer_id}", post(cancel_offer))
+        .route("/buy", post(buy_offer))
     }

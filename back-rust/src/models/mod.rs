@@ -137,7 +137,7 @@ pub struct Offer {
     pub offer_id: String,
     pub account: String,
     pub user_id: String,
-    //pub nft_url: String,        // PATH TO NFT preview see 'image_url' in Asset
+    pub nft_url: String,
     pub nft_id: String,
     pub price: String,
     pub is_sell_offer: String,
@@ -153,6 +153,7 @@ pub struct OfferRequest {
     pub price: String,
     pub xrp_address: String,
     pub nft_token_id: String,
+    pub nft_url: String,
 }
 
 #[derive(Debug, Serialize, Deserialize, FromRow)]
@@ -168,4 +169,15 @@ pub struct NftOfferResponse {
     pub fee: i32,
     pub nft: NftDetails,
     pub raw_result: RawResult,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct NftBuyRequest {
+    pub offer_id: String,
+    pub buyer_user_id: String,
+    pub seller_user_id: String,
+    pub buyer_xrp_address: String,
+    pub seller_xrp_address: String,
+    pub nft_id: String,
+    pub client_secret: String,
 }
