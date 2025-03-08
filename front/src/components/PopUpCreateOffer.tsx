@@ -27,6 +27,7 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
         nft_url: assetsDetails[0].image_url || '',
     });
     const [status, setStatus] = useState<string>('');
+    const [requestDoing, setRequestDoing] = useState<boolean>(false);
     const userId = useSelector((state: RootState) => state.auth.user_id);
     const token = useSelector((state: RootState) => state.auth.token);
 
@@ -44,6 +45,7 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
     };
 
     const handleCreateOffer = (e: React.FormEvent) => {
+        setRequestDoing(true);
         e.preventDefault();
         setStatus('Preparing transaction...');
 
@@ -69,11 +71,13 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
         })
             .then((response: any) => {
                 showSuccess('Transaction submitted successfully!');
+                setRequestDoing(false);
             })
             .catch((error: any) => {
                 console.error(error);
                 setStatus(`Error: ${error.message}`);
                 showError(`${error.message}`);
+                setRequestDoing(false);
             });
 
     }
@@ -145,7 +149,8 @@ const PopUpCreateOffer: React.FC<PopUpAssetDetailsProps> = ({
                             />
                         </div>
                         <div className='flex justify-center gap-4 mt-auto'>
-                            <button onClick={handleCreateOffer} className='p-2 ring-1 bg-collecty-p rounded-md' type="submit">Create Offer</button>
+                        { !requestDoing && <button onClick={handleCreateOffer} className='p-2 ring-1 bg-collecty-p rounded-md' type="submit">Create Offer</button>}
+                        { requestDoing && <p>Creating Offer</p>}
                         </div>
                         {status && <p>{status}</p>}
                     </div>

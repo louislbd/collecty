@@ -32,6 +32,7 @@ const PopUpBuyNftOffer: React.FC<PopUpAssetDetailsProps> = ({
 
     console.log(offerDetails);
     const [secret, setSecret] = useState<string>('');
+    const [requestDoing, setRequestDoing] = useState<boolean>(false);
     const [userInputs, setUserInputs] = useState({
         xrpAddress: '',
     });
@@ -73,6 +74,7 @@ const PopUpBuyNftOffer: React.FC<PopUpAssetDetailsProps> = ({
     };
 
     const handleBuyNFT = (e: React.FormEvent) => {
+        setRequestDoing(true);
         e.preventDefault();
         setStatus('Preparing transaction...');
 
@@ -95,11 +97,13 @@ const PopUpBuyNftOffer: React.FC<PopUpAssetDetailsProps> = ({
         })
             .then((response: any) => {
                 showSuccess('Transaction submitted successfully!');
+                setRequestDoing(false);
             })
             .catch((error: any) => {
                 console.error(error);
                 setStatus(`Error: ${error.message}`);
                 showError(`${error.message}`);
+                setRequestDoing(false);
             });
     }
 
@@ -173,7 +177,8 @@ const PopUpBuyNftOffer: React.FC<PopUpAssetDetailsProps> = ({
                                     />
                                 </div>
                                 <div className='flex justify-center gap-4 mt-auto'>
-                                    <button onClick={handleBuyNFT} className='p-2 ring-1 bg-collecty-p rounded-md' type="submit">Buy NFT</button>
+                                    { !requestDoing && <button onClick={handleBuyNFT} className='p-2 ring-1 bg-collecty-p rounded-md' type="submit">Buy NFT</button>}
+                                    { requestDoing && <p>Buying NFT</p>}
                                 </div>
                                 {status && <p>{status}</p>}
                             </div>

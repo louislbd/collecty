@@ -10,6 +10,7 @@ function SigninForm() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [password, setPassword] = useState('');
     const [repeatedPassword, setRepeatedPassword] = useState('');
+    const [requestDoing, setRequestDoing] = useState<boolean>(false);
 
     async function signin() {
         if (!username || !email || !password || !repeatedPassword || password !== repeatedPassword) {
@@ -19,6 +20,7 @@ function SigninForm() {
 
         const datas = { 'username': username, 'email': email, 'password': password };
         setIsLoading(true);
+        setRequestDoing(true);
         apiService.post({
             url: 'auth/register',
             data: datas,
@@ -26,8 +28,10 @@ function SigninForm() {
             .then((_: any) => {
                 showSuccess('You are registered with a new account !');
                 setIsLoading(false);
+                setRequestDoing(false);
                 navigate('/auth/login');
             }).catch((_: any) => {
+                setRequestDoing(false);
                 showError('An error occurred');
             });
     }
@@ -42,9 +46,8 @@ function SigninForm() {
                         <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" placeholder='Email' onChange={(e) => setEmail(e.target.value)}></input>
                         <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
                         <input className="w-3/4 h-10 rounded-md ring-0 outline-0.1 outline-[#31363F] p-2" placeholder='Repeat password' onChange={(e) => setRepeatedPassword(e.target.value)}></input>
-                        <button className="w-[40%] h-8 bg-[#EEEEEE] rounded-md mt-6" disabled={isLoading} onClick={() => signin()}>
-                            Confim
-                        </button>
+                        { !requestDoing && <button className="w-[40%] h-8 bg-[#EEEEEE] rounded-md mt-6" disabled={isLoading} onClick={() => signin()}>Confim</button>}
+                        { requestDoing && <p>Registering ...</p>}
                         <div>
                             Already registered? <a href='/auth/login' className='text-green-600 font-bold'>Login</a>
                         </div>

@@ -19,6 +19,7 @@ const GetUserOffers: React.FC = () =>{
     const token = useSelector((state: RootState) => state.auth.token);
     const [loading, setLoading] = useState<boolean>(true);
     const [offers, setOffers] = useState<OffersDetailsProps[]>([]);
+    const [requestDoing, setRequestDoing] = useState<boolean>(false);
 
     useEffect(() => {
             apiService.get({
@@ -49,6 +50,7 @@ const GetUserOffers: React.FC = () =>{
     }, []);
 
     function cancelOffer(offerToRemove: OffersDetailsProps) {
+        setRequestDoing(true);
         apiService.post({
             url: `tokens/cancel/${offerToRemove.offer_id}`,
             store: { token: token, user_id: userId },
@@ -57,10 +59,12 @@ const GetUserOffers: React.FC = () =>{
         .then(response => {
             setOffers((prevOffers) => prevOffers.filter((offer) => offer.offer_id !== offerToRemove.offer_id));
             showSuccess('Succes canceling offer');
+            setRequestDoing(false);
         })
         .catch(error => {
             console.error('There was an error canceling offer !', error);
             showError('Error canceling offer');
+            setRequestDoing(false);
         });
     };
 
@@ -82,8 +86,8 @@ const GetUserOffers: React.FC = () =>{
                             <h1 className='font-semibold pl-2 py-3'>Prix : {offer.price}</h1>
                         </div>
                         <div>
-                            <button className="w-2/4 h-full rounded-md cursor-pointer ring-1 ring-collecty-p p-2" onClick={() => cancelOffer(offer)}>Cancel Offer</button>
-
+                        { !requestDoing && <button className="w-2/4 h-full rounded-md cursor-pointer ring-1 ring-collecty-p p-2" onClick={() => cancelOffer(offer)}>Cancel Offer</button>}
+                        { requestDoing && <p>Canceling Offer</p>}
                         </div>
                 </div>
                 )) : <p>No assets</p>

@@ -13,6 +13,7 @@ function CreatePaintingForm() {
     const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
     const [imageData, setImageData] = useState<File | null>(null);
     const [secret, setSecret] = useState<string>('');
+    const [requestDoing, setRequestDoing] = useState<boolean>(false);
 
     const [assetDetails, setAssetDetails] = useState({
         authorName: '',
@@ -55,7 +56,7 @@ function CreatePaintingForm() {
         formDatas.append('client_secret', secret);
         formDatas.append('image',  imageData);
 
-
+        setRequestDoing(true);
         setIsLoading(true);
         apiService.postFormData({
             url: "assets/create",
@@ -75,11 +76,14 @@ function CreatePaintingForm() {
                     assetDescription: '',
                     xrpAddress: '',
                 });
+                setRequestDoing(false);
                 navigate('/your-collecty-vault');
             }).catch((error: any) => {
                 showError('Error creating NFT');
+                setRequestDoing(false);
             }).finally(() => {
                 setIsLoading(false);
+                setRequestDoing(false);
             });
     }
 
@@ -145,9 +149,8 @@ function CreatePaintingForm() {
                 </div>
                 <input id="file" type="file" accept="image/jpeg,image/png,image/jpg" onChange={handleImageChange} />
                 {previewImageUrl && <img src={previewImageUrl} alt="Aperçu" style={{ width: 200, height: 200, marginTop: 10 }} />}
-                <button className='text-white ring-2 p-2 mt-3 rounded-sm ring-collecty-p hover:bg-collecty-p' onClick={() => createPainting()} disabled={isLoading}>
-                    Create painting
-                </button>
+                { !requestDoing && <button className='text-white ring-2 p-2 mt-3 rounded-sm ring-collecty-p hover:bg-collecty-p' onClick={() => createPainting()} disabled={isLoading}>Create painting</button>}
+                { requestDoing && <p>Creating NFT</p>}
             </div>
         </div>
     );
